@@ -1,0 +1,21 @@
+node_modules
+dist
+demo-dist
+*.log
+
+# OS files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+.directory
+.Trash-*
+
+# Playwright
+test-results
+playwright-report

@@ -1,0 +1,1198 @@
+/* ---------- Theme ---------- */
+
+:root {
+  color-scheme: light dark;
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --text: #18181b;
+  --muted: #71717a;
+  --border: #e4e4e7;
+  --accent: #6d5dfc;
+  --accent-soft: #ecebff;
+  --success: #16a34a;
+  --info: #2563eb;
+  --error: #dc2626;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
+
+  --vt-duration: 0.45s;
+  --vt-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c0c0e;
+    --surface: #161619;
+    --surface-2: #1f1f23;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+    --border: #2a2a30;
+    --accent: #8b7dff;
+    --accent-soft: #24213f;
+    --shadow: none;
+  }
+}
+
+/* ---------- Page ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font:
+    16px/1.6 system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+}
+
+.hero,
+main,
+.footer {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero {
+  padding-top: 64px;
+  padding-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+h1 {
+  margin: 4px 0 12px;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  margin: 64px 0 16px;
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.lead {
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.badge {
+  display: inline-block;
+  margin: 8px 0 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.badge.ok {
+  background: color-mix(in oklab, var(--success) 14%, transparent);
+  color: var(--success);
+}
+
+.badge.warn {
+  background: color-mix(in oklab, var(--error) 12%, transparent);
+  color: var(--error);
+  border-radius: var(--radius);
+}
+
+.motion-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.motion-notice .status {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.switch {
+  color: var(--text);
+}
+
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.toc a {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.toc a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+code {
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+  background: var(--surface-2);
+  font:
+    0.88em ui-monospace,
+    'Cascadia Code',
+    Consolas,
+    monospace;
+}
+
+.code {
+  margin: 12px 0;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.code code {
+  padding: 0;
+  background: none;
+}
+
+/* Shiki tokens: both theme colors are in CSS variables */
+.code span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+}
+
+@media (prefers-color-scheme: dark) {
+  .code span {
+    color: var(--shiki-dark);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+  }
+}
+
+/* Wide tables scroll inside the page on narrow screens */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.table-scroll table {
+  min-width: 720px;
+}
+
+table {
+  width: 100%;
+  margin: 12px 0 28px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.steps li,
+.notes li {
+  margin-bottom: 10px;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.compare > div {
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.compare ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.footer {
+  padding-top: 48px;
+  padding-bottom: 48px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Controls ---------- */
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button.link {
+  border: none;
+  background: none;
+  color: var(--accent);
+  padding: 6px 4px;
+}
+
+input:not([type='checkbox']) {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+/* ---------- Example card ---------- */
+
+/* Narrow screens: less padding around the examples */
+@media (max-width: 600px) {
+  .example,
+  .preview {
+    padding: 16px;
+  }
+
+  .planets {
+    font-size: 0.85rem;
+  }
+
+  .planets th,
+  .planets td {
+    padding: 8px 4px;
+  }
+}
+
+.examples {
+  display: grid;
+  /* A column may shrink below the widest content, the content scrolls or wraps itself */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+
+.example {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.example-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.example-header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.example-header a:hover {
+  color: var(--accent);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.example-description {
+  margin: 8px 0 20px;
+  color: var(--muted);
+}
+
+.preview {
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.source {
+  margin-top: 16px;
+}
+
+.source summary {
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* ---------- Quick start ---------- */
+
+.numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.numbers button {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 14px;
+  background: var(--accent);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ---------- Todo list ---------- */
+
+.todo-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.todo-form input {
+  flex: 1;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todos li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.todos label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.todos input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.todos li.done {
+  background: transparent;
+}
+
+.todos li.done span {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.icon {
+  padding: 0 8px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.todo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Shuffle grid ---------- */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 10px;
+}
+
+.tile {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  color: rgb(0 0 0 / 0.65);
+  font-weight: 700;
+}
+
+/* ---------- Leaderboard ---------- */
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.board li {
+  display: grid;
+  grid-template-columns: 32px 36px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.board li:first-child {
+  background: linear-gradient(90deg, color-mix(in oklab, gold 30%, var(--surface)), var(--surface));
+}
+
+.rank {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.avatar {
+  font-size: 1.4rem;
+}
+
+.score {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+/* ---------- Accordion ---------- */
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faq article {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.faq article button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  font-weight: 500;
+}
+
+.faq .chevron {
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: none;
+}
+
+.faq article.open .chevron {
+  transform: rotate(90deg);
+}
+
+.faq p {
+  margin: 0;
+  padding: 0 16px 14px;
+  color: var(--muted);
+}
+
+/* ---------- Toasts ---------- */
+
+.toast-area {
+  min-height: 236px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toasts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(300px, 100%);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toasts button {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-left: 4px solid currentcolor;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.08);
+  text-align: left;
+}
+
+.toasts .success button,
+.kind-success {
+  color: var(--success);
+}
+
+.toasts .info button,
+.kind-info {
+  color: var(--info);
+}
+
+.toasts .error button,
+.kind-error {
+  color: var(--error);
+}
+
+/* ---------- Enter only ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-weight: 600;
+}
+
+/* ---------- Filter ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-right: auto;
+}
+
+.chips button {
+  border-radius: 999px;
+}
+
+.chips button[aria-checked='true'] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.products article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 0.9rem;
+}
+
+.products .emoji {
+  font-size: 2rem;
+}
+
+.empty {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Concurrent ---------- */
+
+.lanes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.lane h4 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.lane ul {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lane li {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 1.3rem;
+}
+
+/* ---------- Grid and list ---------- */
+
+button[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.cards {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards.grid {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.cards li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.cards.grid li {
+  flex-direction: column;
+  text-align: center;
+}
+
+.cards .emoji {
+  font-size: 1.6rem;
+}
+
+.cards.grid .emoji {
+  font-size: 2.4rem;
+}
+
+.cards p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.cards.grid p {
+  display: none;
+}
+
+/* ---------- Kanban ---------- */
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.kanban h4 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.kanban ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 48px;
+  margin: 0;
+  padding: 6px;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--text) 5%, transparent);
+  list-style: none;
+}
+
+.kanban li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 0.9rem;
+}
+
+.kanban li button {
+  padding: 0 8px;
+}
+
+.kanban li button:disabled {
+  visibility: hidden;
+}
+
+/* ---------- Chat ---------- */
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 240px;
+  margin: 0;
+  padding: 12px;
+  overflow-y: auto;
+  border-radius: 12px;
+  background: var(--surface);
+  list-style: none;
+}
+
+.chat li {
+  max-width: 75%;
+}
+
+.chat li.me {
+  align-self: flex-end;
+}
+
+.chat button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 16px 16px 16px 4px;
+  background: var(--surface-2);
+  text-align: left;
+}
+
+.chat .me button {
+  border-radius: 16px 16px 4px;
+  background: var(--accent);
+  color: white;
+}
+
+/* ---------- Carousel ---------- */
+
+.carousel-frame {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.carousel {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.carousel article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  color: rgb(0 0 0 / 0.7);
+  font-size: 1.2rem;
+}
+
+.carousel article span {
+  font-size: 3.5rem;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.dots button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.dots button[aria-current='true'] {
+  background: var(--accent);
+}
+
+/* ---------- Your own root component ---------- */
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 40px;
+}
+
+.team > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: var(--surface);
+  font-weight: 600;
+}
+
+.team .avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font-size: 1.1rem;
+}
+
+/* ---------- SVG bar chart ---------- */
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(4px, 2vw, 10px);
+  height: 160px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* The bars get narrower on a small screen */
+.chart svg {
+  flex: 0 1 40px;
+  min-width: 0;
+}
+
+.chart text {
+  fill: rgb(0 0 0 / 0.65);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---------- Sortable table ---------- */
+
+/*
+ * Not the table layout: a table row group can not be the root of a transition.
+ * Every row is a grid with the same columns, subgrid breaks during a transition
+ */
+.planets,
+.planets thead,
+.planets tbody {
+  display: block;
+}
+
+.planets {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.planets tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr) minmax(0, 1.2fr) minmax(0, 1fr);
+}
+
+/* Opaque rows: the moving rows do not show through each other */
+.planets tbody tr {
+  background: var(--surface-2);
+}
+
+.planets td {
+  white-space: nowrap;
+}
+
+.planets th button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+/* ---------- View transitions ---------- */
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes vt-scale-out {
+  to {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes vt-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-12deg);
+  }
+  70% {
+    transform: scale(1.12) rotate(3deg);
+  }
+}
+
+@keyframes vt-pop-out {
+  to {
+    opacity: 0;
+    transform: scale(0.2) rotate(12deg);
+  }
+}
+
+@keyframes vt-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(110%);
+  }
+}
+
+@keyframes vt-slide-out {
+  to {
+    opacity: 0;
+    transform: translateX(110%);
+  }
+}
+
+/* Moving and resizing of every child */
+::view-transition-group(*) {
+  animation-duration: var(--vt-duration);
+  animation-timing-function: var(--vt-easing);
+}
+
+/* Enter and exit of every child: a child that exists only in one of the snapshots */
+::view-transition-new(*):only-child {
+  animation: vt-scale-in var(--vt-duration) var(--vt-easing) both;
+}
+
+::view-transition-old(*):only-child {
+  animation: vt-scale-out calc(var(--vt-duration) * 0.6) ease-in both;
+}
+
+/* Keep wheel scrolling a group that is its own scroll container during a transition */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Grid tiles pop */
+::view-transition-new(.tile):only-child {
+  animation: vt-pop-in 0.5s var(--vt-easing) both;
+}
+
+::view-transition-old(.tile):only-child {
+  animation: vt-pop-out 0.3s ease-in both;
+}
+
+/* Toasts slide from the right */
+::view-transition-new(.toast):only-child {
+  animation: vt-slide-in 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+
+::view-transition-old(.toast):only-child {
+  animation: vt-slide-out 0.25s ease-in both;
+}
+
+/* Accordion: the text keeps its size while the card grows, only the card is clipped */
+::view-transition-old(.faq),
+::view-transition-new(.faq) {
+  height: 100%;
+  object-fit: none;
+  object-position: top;
+}
+
+/* Shuffle grid: only during a shuffle, the tiles move with a spring */
+.tiles:active-view-transition-type(shuffle)::view-transition-group(.tile) {
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Enter only: no animations but the enter of new chips */
+.chips::view-transition-group(*),
+.chips::view-transition-new(*) {
+  animation: none;
+}
+
+.chips::view-transition-old(*) {
+  animation: none;
+  opacity: 0;
+}
+
+.chips::view-transition-new(.chip):only-child {
+  animation: vt-pop-in 0.4s var(--vt-easing) both;
+}
+
+/* Grid and list: the snapshots keep their size while the card changes its shape */
+::view-transition-old(.card),
+::view-transition-new(.card) {
+  height: 100%;
+  object-fit: none;
+  object-position: left top;
+}
+
+/* Chat: a new message slides up */
+.chat::view-transition-new(.message):only-child {
+  animation: vt-message-in 0.3s var(--vt-easing) both;
+}
+
+/* Carousel: the direction comes from the transition type */
+.carousel:active-view-transition-type(next)::view-transition-new(.slide) {
+  animation: vt-from-right 0.4s var(--vt-easing) both;
+}
+
+.carousel:active-view-transition-type(next)::view-transition-old(.slide) {
+  animation: vt-to-left 0.4s var(--vt-easing) both;
+}
+
+.carousel:active-view-transition-type(prev)::view-transition-new(.slide) {
+  animation: vt-from-left 0.4s var(--vt-easing) both;
+}
+
+.carousel:active-view-transition-type(prev)::view-transition-old(.slide) {
+  animation: vt-to-right 0.4s var(--vt-easing) both;
+}
+
+/* SVG bar chart: stretch the snapshots to the size of the bar */
+::view-transition-old(.bar),
+::view-transition-new(.bar) {
+  height: 100%;
+}
+
+@keyframes vt-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes vt-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes vt-to-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes vt-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes vt-to-right {
+  to {
+    transform: translateX(100%);
+  }
+}
